@@ -1,10 +1,9 @@
 package com.brd.veiculos.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,10 +16,6 @@ public class Veiculo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private MarcaVeiculo marca;
 
 	@Size(min = 3, max = 20)
 	private String modelo;
@@ -29,26 +24,22 @@ public class Veiculo {
 	@Size(min = 3, max = 20)
 	private String placa;
 
-	private LocalDate dataLocacao;
+	@NotNull
+	private BigDecimal valor;
 
-	private LocalDate dataDataEntrega;
+	private LocalDate manutencao;
 
-	private boolean locado;
+	@NotNull
+	private String categoria;
 
+	@NotNull
+	private String marca;
+
+	private String cambio;
 	
-	public Veiculo() {
-	}
+	private String tipo;
 	
-	public Veiculo(MarcaVeiculo marca, String modelo, String placa, LocalDate dataLocacao, LocalDate dataDataEntrega,
-			boolean locado) {
-		super();
-		this.marca = marca;
-		this.modelo = modelo;
-		this.placa = placa;
-		this.dataLocacao = dataLocacao;
-		this.dataDataEntrega = dataDataEntrega;
-		this.locado = locado;
-	}
+	private String observacoes ;
 
 	public Long getCodigo() {
 		return codigo;
@@ -56,14 +47,6 @@ public class Veiculo {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public MarcaVeiculo getMarca() {
-		return marca;
-	}
-
-	public void setMarca(MarcaVeiculo marca) {
-		this.marca = marca;
 	}
 
 	public String getModelo() {
@@ -82,28 +65,60 @@ public class Veiculo {
 		this.placa = placa;
 	}
 
-	public LocalDate getDataLocacao() {
-		return dataLocacao;
+	public BigDecimal getValor() {
+		return valor;
 	}
 
-	public void setDataLocacao(LocalDate dataLocacao) {
-		this.dataLocacao = dataLocacao;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 
-	public LocalDate getDataDataEntrega() {
-		return dataDataEntrega;
+	public LocalDate getManutencao() {
+		return manutencao;
 	}
 
-	public void setDataDataEntrega(LocalDate dataDataEntrega) {
-		this.dataDataEntrega = dataDataEntrega;
+	public void setManutencao(LocalDate manutencao) {
+		this.manutencao = manutencao;
 	}
 
-	public boolean isLocado() {
-		return locado;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setLocado(boolean locado) {
-		this.locado = locado;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getCambio() {
+		return cambio;
+	}
+
+	public void setCambio(String cambio) {
+		this.cambio = cambio;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 
 	@Override
@@ -130,6 +145,6 @@ public class Veiculo {
 			return false;
 		return true;
 	}
-
 	
+
 }
