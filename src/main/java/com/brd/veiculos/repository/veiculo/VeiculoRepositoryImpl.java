@@ -31,6 +31,7 @@ public class VeiculoRepositoryImpl implements VeiculoRepositoryQuery {
 		Root<Veiculo> root = criteria.from(Veiculo.class);
 
 		Predicate[] predicates = criarRestricoes(veiculoFilter, builder, root);
+	
 		criteria.where(predicates);
 
 		TypedQuery<Veiculo> query = manager.createQuery(criteria);
@@ -43,9 +44,9 @@ public class VeiculoRepositoryImpl implements VeiculoRepositoryQuery {
 	private Predicate[] criarRestricoes(VeiculoFilter veiculoFilter, CriteriaBuilder builder, Root<Veiculo> root) {
 		List<Predicate> predicates = new ArrayList<>();
 
-		if (!StringUtils.isEmpty(veiculoFilter.getDescricao())) {
-			predicates.add(builder.like(builder.lower(root.get("descricao")),
-					"%" + veiculoFilter.getDescricao().toLowerCase() + "%"));
+		if (!StringUtils.isEmpty(veiculoFilter.getModelo())) {
+			predicates.add(builder.like(builder.lower(root.get("modelo")),
+					"%" + veiculoFilter.getModelo().toLowerCase() + "%"));
 		}
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}

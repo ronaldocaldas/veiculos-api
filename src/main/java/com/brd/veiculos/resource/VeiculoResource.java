@@ -1,7 +1,5 @@
 package com.brd.veiculos.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -35,11 +33,6 @@ public class VeiculoResource {
 	@Autowired
 	private VeiculosService veiculoService;
 	
-	@GetMapping
-	public List<Veiculo> listar(){
-		return veiculoRepository.findAll();
-	}
-	
 	@GetMapping("/{codigo}")
 	public Veiculo buscarPeloCodigo(@PathVariable Long codigo){
 		return veiculoRepository.findOne(codigo);
@@ -63,6 +56,7 @@ public class VeiculoResource {
 		return ResponseEntity.ok(veiculoSalvo);
 	}
 	
+	@GetMapping
 	public Page<Veiculo> pesquisar(VeiculoFilter veiculoFilter, Pageable pageable) {
 		return veiculoRepository.filtrar(veiculoFilter, pageable);
 	}
